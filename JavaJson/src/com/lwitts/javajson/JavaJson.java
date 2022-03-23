@@ -5,6 +5,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.*;
 
 
+
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -77,18 +78,18 @@ public class JavaJson {
 
             JSONArray jsonArray = (JSONArray) jsonObject.get("sequences");
 
-            for (int i = 0; i < jsonArray.size(); i++) {
-                JSONObject result = (JSONObject) jsonArray.get(i);
+            for (Object o : jsonArray) {
+                JSONObject result = (JSONObject) o;
                 JSONArray canvases = (JSONArray) result.get("canvases");
 
-                for (int j = 0; j < canvases.size(); j++) {
-                    JSONObject canvas = (JSONObject) canvases.get(j);
+                for (Object cnv : canvases) {
+                    JSONObject canvas = (JSONObject) cnv;
                     String label = (String) canvas.get("label");
                     System.out.println(label);
                     JSONArray images = (JSONArray) canvas.get("images");
 
-                    for (int k = 0; k < images.size(); k++) {
-                        JSONObject image = (JSONObject) images.get(k);
+                    for (Object img : images) {
+                        JSONObject image = (JSONObject) img;
                         JSONObject resources = (JSONObject) image.get("resource");
 
                         String resId = (String) resources.get("@id");
@@ -121,7 +122,6 @@ public class JavaJson {
 
     public static String createUrl(String id, String height, String width) {
         //generic URL to get the image .jpg
-        String url = id + "/full/" + height + "," + width + "/0/" + "default.jpg";
-        return url;
+        return id + "/full/" + height + "," + width + "/0/" + "default.jpg";
     }
 }
