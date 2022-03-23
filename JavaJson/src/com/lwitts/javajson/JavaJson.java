@@ -21,7 +21,7 @@ public class JavaJson {
         StringBuilder sb = new StringBuilder();
         while ((inputLine = in.readLine()) != null)
             sb.append(inputLine);
-        in.close();
+            in.close();
 
         json = sb.toString();
         JSONParser jParse = new JSONParser();
@@ -60,7 +60,6 @@ public class JavaJson {
                 }
             }
         }
-
     }
 
 
